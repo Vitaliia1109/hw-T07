@@ -1,24 +1,12 @@
+let input;
+do {
+    input = prompt("Enter a number of at least 3 digits:");
+} while (isNaN(input) || input.length < 3); // Ensure the input is numeric and has at least 3 digits
 
-let number = prompt("Enter a number of at least 3 digits:");
+let digits = input.split(''); // Split the number into an array of digits
+let temp = digits[1]; // Store the second digit temporarily
+digits[1] = digits[digits.length - 1]; // Swap the second digit with the last digit
+digits[digits.length - 1] = temp; // Assign the stored digit to the last position
+let newNumber = parseInt(digits.join('')); // Convert the modified array back to a number
 
-
-if (number.length < 3) {
-    alert("Please enter a number with at least 3 digits.");
-} else {
-    
-    let digits = number.split('');
-
-    
-    for (let i = 0; i < digits.length; i++) {
-        if (i === 1) {
-            let temp = digits[i];
-            digits[i] = digits[digits.length - 1];
-            digits[digits.length - 1] = temp;
-            break; 
-        }
-    }
-    
-    let newNumber = parseInt(digits.join(''));
-
-    console.log("Original number: " + number + " New number: " + newNumber);
-}
+console.log("Original number: " + input + " New number: " + newNumber); // Output the result
